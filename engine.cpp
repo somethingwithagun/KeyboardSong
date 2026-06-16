@@ -139,7 +139,6 @@ void Engine::handleTypedCharacter(char ch) {
 	}
 
 	m_letters.push_back(new sf::Text(m_font, sf::String(ch)));
-
 	if(ch != m_currentWord[m_letters.size()-1]) {
 		m_letters.back()->setFillColor(sf::Color::Red);
 		mistakes++;
