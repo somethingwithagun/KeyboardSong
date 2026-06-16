@@ -24,10 +24,10 @@ protected:
 
 	bool m_is_opened;
 
-	Button m_acceptButton;
-	Button m_rejectButton;
+	Button* m_acceptButton = nullptr;
+	Button* m_rejectButton = nullptr;
 
-	Button m_closeButton;
+	Button* m_closeButton = nullptr;
 
 	sf::RectangleShape m_background;
 
@@ -53,6 +53,7 @@ public:
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);
+	virtual void handleMouseClick(const sf::Vector2f& mousePos);
 
 	virtual void show();
 	virtual void close();
@@ -60,8 +61,7 @@ public:
 	void setPosition(const sf::Vector2f& pos);
 	void setFont(const sf::Font& font);
 
-	void symEntered(char c);
-  	void symErase();
+	virtual void onTextEntered(char ch);
 
 	virtual Result getResult() const;
 	virtual const bool& getIsOpen() const;

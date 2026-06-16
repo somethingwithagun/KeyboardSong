@@ -50,12 +50,10 @@ void TextInput::update(double deltaT)
 		break;
 	}
 
-	if (m_text.getSize() > 0 && !m_active && m_text[m_text.getSize() - 1] == '_') {
-		m_text.erase(m_text.getSize() - 1, 1);
-		this->setText(m_text);
+	if(m_active && m_text.isEmpty()) {
+		m_text += '_';
+		m_label.setString(m_text);
 	}
-	else if (m_text.getSize() > 0 && m_active && m_text[m_text.getSize() - 1] != '_')
-		this->setText(m_text);
 
 	if (m_counter > 0.06)
 	{
@@ -75,9 +73,23 @@ void TextInput::render(sf::RenderTarget* target)
 		target->draw(m_placeholderLabel);
 }
 
+void TextInput::onTextEntered(char ch) {
+	if(ch == BACKSPACE_CODE) {
+		eraseLastCharacter();
+	} else if(ch == ENTER_CODE) { // enter
+		
+	} else if(ch >= SPACE_CODE && ch < 128) {
+		setText(getText()+ch); 
+	}
+}
+
+void TextInput::eraseLastCharacter() {
+	auto text = getText();
+	setText(text.substring(0,text.getSize()-1));
+}
+
 void TextInput::setPlaceholderText(const sf::String& text) {
-	if (text.getSize() > m_charactersLimit)
-	{
+	if (text.getSize() > m_charactersLimit) {
 		std::cerr << "Max characters limit reached!\n";
 		return;
 	}
@@ -140,10 +152,10 @@ void TextInput::setText(const sf::String& text)
 		std::cerr << "Max characters limit reached!\n";
 		return;
 	}
-
-	if (m_active)
-		m_text = text + '_';
-
+	m_text = text;
+	if(m_active) {
+		m_text += '_';
+	}
 	m_label.setString(m_text);
 }
 

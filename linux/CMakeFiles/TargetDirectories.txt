@@ -1,3 +1,0 @@
-/home/dominator/Documents/Projects/cpp/ResultBoard/linux/CMakeFiles/MKT.dir
-/home/dominator/Documents/Projects/cpp/ResultBoard/linux/CMakeFiles/edit_cache.dir
-/home/dominator/Documents/Projects/cpp/ResultBoard/linux/CMakeFiles/rebuild_cache.dir

@@ -154,6 +154,10 @@ void DialogBase::render(sf::RenderTarget* target)
 	}
 }
 
+void DialogBase::handleMouseClick(const sf::Vector2f &mousePos)
+{
+}
+
 void DialogBase::show()
 {
 	m_is_opened = true;
@@ -199,11 +203,7 @@ void DialogBase::setFont(const sf::Font& font) {
 	m_font = font;
 }
 
-void DialogBase::symEntered(char c) {
-
-}
-
-void DialogBase::symErase() {
+void DialogBase::onTextEntered(char ch) {
 
 }
 

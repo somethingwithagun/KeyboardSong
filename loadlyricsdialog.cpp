@@ -24,26 +24,21 @@ sf::String LoadLyricsDialog::getPath() {
   return sf::String(); 
 }
 
-void LoadLyricsDialog::symEntered(char c) {
+void LoadLyricsDialog::onTextEntered(char ch){
   if(m_lyricsPathInput->getActive())
-    m_lyricsPathInput->setText(m_lyricsPathInput->getText()+c);  
+    m_lyricsPathInput->onTextEntered(ch);
 }
 
-void LoadLyricsDialog::symErased() {
-  if(m_lyricsPathInput->getActive())
-    m_lyricsPathInput->setText(m_lyricsPathInput->getText().substring(0,m_lyricsPathInput->getText().getSize()-1));
-}
 
 void LoadLyricsDialog::update(const float& dt) {
   DialogBase::update(dt);
 
   m_lyricsPathInput->update(dt);
+}
 
-  if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-    if(m_lyricsPathInput->getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition())))
-      m_lyricsPathInput->setActive(true);
-    
-  }
+void LoadLyricsDialog::handleMouseClick(const sf::Vector2f& mousePos) {
+  if(m_lyricsPathInput->getGlobalBounds().contains(mousePos))
+    m_lyricsPathInput->setActive(true);
 }
 
 void LoadLyricsDialog::render(sf::RenderTarget* target) {

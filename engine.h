@@ -35,21 +35,40 @@ private:
   float calculateStats(const int mistakes, const int letters) const;
 
 // util
-  std::string ftostr(float x) const;
-  std::string currentTime();
+  std::string formatFloat(float value) const;
+  std::string getCurrentTime() const;
   bool isDialogOpened(const DialogBase* d) const;
+  void updateStatsLabels();
+  void setTranslatedWord(const sf::String& translatedWord);
 
 
-  void changeWord();
-  void loadLyrics(std::string path);
+  void moveToNextWord();
+  void loadLyrics(const std::string& path);
   sf::String translateWord(std::string word);
   sf::String decodeTranslatedWord(std::string word);
   void onTextEntered(char ch);
-  void symErase();
+  void handleWordSubmit();
+  void handleTypedCharacter(char ch);
+  void eraseLastTypedLetter();
+  void processEvents();
+  void handleSongEnd();
+  void updateDialogs();
+  void updateRequestLyricsDialog();
+  void updateLoadLyricsDialog();
+  void processMouseInput();
+  void handleMouseRelease();
+  bool isMouseOver(const Button* button) const;
+  void clearRating();
+  void openRequestLyricsDialog();
+  void openLoadLyricsDialog();
+  void toggleTranslatedWord();
+  void updateButtons();
+  void renderFrame();
+  void updateFrameState();
 
   DialogBase* getActiveDialog();
 
-  bool writeRating(std::string time, float rating);
+  bool writeRating(const std::string& time, float rating);
 
   template<class T> void freeVector(std::vector<T*>& vec);
 
@@ -72,7 +91,6 @@ private:
   sf::String m_currentWord;
   sf::String m_currentTranslatedWord;
 	sf::Text m_wordLabel;
-	sf::Text m_translatedWordLabel;
 	sf::Text m_mistakesLabel;
 	sf::Text m_correctLabel;
 
@@ -83,9 +101,6 @@ private:
   Button* m_requestLyricsButton = nullptr;
   Button* m_loadLyricsButton = nullptr;
 
-  Button* m_translateWordButton = nullptr;
-  bool m_translatePressed;
-  
   RequestSongDialog* m_requestLyricsDialog = nullptr;
   LoadLyricsDialog* m_loadLyricsDialog = nullptr;
 
@@ -100,11 +115,8 @@ private:
   sf::Font m_font;
 
   std::vector<std::string> m_words;
-  std::vector<sf::String> m_translatedWords;
   std::vector<sf::RectangleShape*> m_letterPlaces;
 	std::vector<sf::Text*> m_letters;
-
-
 };
 
 #endif

@@ -4,6 +4,7 @@ project(MusicalKeyboardTrainer LANGUAGES C CXX)
 #set(CURL_LIBRARY D:/libs/curl-8.6.0-gcc/bin/libcurl-x64.dll)
 #set(SFML_DIR D:/libs/SFML-2.5.1-gcc)
 #set(CURL_INCLUDE_DIR D:/libs/curl-8.6.0-gcc/include)
+set(CMAKE_CXX_FLAGS -g)
 
 find_package(CURL REQUIRED)
 #include_directories(${CURL_INCLUDE_DIR})

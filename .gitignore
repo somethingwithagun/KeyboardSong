@@ -1,0 +1,6 @@
+linux/
+site/
+release/
+debug/
+build/
+.vscode/

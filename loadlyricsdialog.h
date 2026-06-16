@@ -11,14 +11,14 @@ public:
 
   sf::String getPath();
 
-  void symEntered(char c);
-  void symErased();
+  virtual void onTextEntered(char ch) override;
 
   virtual void update(const float& dt) override;
 	virtual void render(sf::RenderTarget* target) override;
-
+  virtual void handleMouseClick(const sf::Vector2f& mousePos) override;
+  
   virtual void setPosition(const sf::Vector2f& pos);
-private:
+  private:
   TextInput* m_lyricsPathInput = nullptr;
 };
 

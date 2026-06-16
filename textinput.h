@@ -25,6 +25,8 @@ public:
 	void update(double deltaT);
 	void render(sf::RenderTarget* target = nullptr);
 
+	void onTextEntered(char ch);
+	
 	/* SETTERS */
 
 	void setPlaceholderText(const sf::String& text);
@@ -71,7 +73,6 @@ public:
 
 	const TextAlign& getAlign() const;
 private:
-
 	sf::Font m_font;
 
 	sf::RectangleShape m_background;
@@ -92,5 +93,7 @@ private:
 
 	int m_charactersLimit = DEFAULT_CHARACTER_LIMIT;
 
+
+	void eraseLastCharacter();
 };
 

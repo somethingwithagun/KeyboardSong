@@ -12,8 +12,7 @@ public:
   sf::String getAuthorName();
   sf::String getSongName();
 
-  void symEntered(char c);
-  void symErase();
+  virtual void onTextEntered(char ch) override;
   
   TextInput* getActiveInput();
 
@@ -24,8 +23,8 @@ public:
 
   virtual void setPosition(const sf::Vector2f& pos);
 private:
-  TextInput m_authorInput;
-  TextInput m_songInput;
+  TextInput* m_authorInput = nullptr;
+  TextInput* m_songInput = nullptr;
 };
 
 #endif
